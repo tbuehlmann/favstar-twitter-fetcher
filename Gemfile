@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+ruby '1.9.3'
 
 gem 'rails', '~> 3.2'
 gem 'jquery-rails', '~> 2.2'
@@ -28,4 +29,3 @@ end
 group :production do
   gem 'pg', '~> 0.14'
 end
-  
