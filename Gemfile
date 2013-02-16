@@ -1,7 +1,6 @@
 source 'https://rubygems.org'
 
 gem 'rails', '~> 3.2'
-gem 'sqlite3', '~> 1.3'
 gem 'jquery-rails', '~> 2.2'
 gem 'slim', '~> 1.3'
 gem 'httparty', '~> 0.10'
@@ -22,6 +21,11 @@ group :development do
   gem 'binding_of_caller', '~> 0.6'
 end
 
+group :development do
+  gem 'sqlite3', '~> 1.3'
+end
+
 group :production do
   gem 'pg', '~> 0.14'
 end
+  
