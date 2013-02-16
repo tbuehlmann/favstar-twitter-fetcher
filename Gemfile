@@ -21,3 +21,7 @@ group :development do
   gem 'better_errors', '~> 0.3'
   gem 'binding_of_caller', '~> 0.6'
 end
+
+group :production do
+  gem 'pg', '~> 0.14'
+end
