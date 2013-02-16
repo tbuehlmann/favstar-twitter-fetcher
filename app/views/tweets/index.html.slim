@@ -1,0 +1,27 @@
+- if flash[:highlight]
+  = content_for :javascripts do
+    javascript:
+      var id = "##{flash[:highlight]}";
+      $(document).ready(function() {
+        $(id).effect("highlight", {"color":"#DFF0D8"}, 3000)
+      });
+h1 Tweets
+h2 Fetch Tweet
+= form_for @tweet, :html => {:class => 'form-inline'} do |f|
+  = f.text_field :tweet_id, {:class => 'input-medium', :placeholder => 'Tweet ID'}
+  = f.submit 'Fetch', :class => 'btn'
+h2 Tweet List
+table.table.table-bordered
+  thead
+    tr
+      th ID
+      th Author
+      th Text
+      th Tweeted
+  tbody
+    - @tweets.each do |t|
+      tr id=t.tweet_id
+        td= link_to(t.tweet_id, t.url)
+        td= link_to(t.author, t.author_url)
+        td= t.text
+        td= t.tweeted_at

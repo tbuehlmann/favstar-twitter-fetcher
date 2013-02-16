@@ -1,0 +1,8 @@
+- if flash[:notice]
+  .alert.alert-success
+    button type="button" class="close" data-dismiss="alert" &times;
+    <strong>Notice:</strong> #{flash[:notice]}
+- if flash[:alert]
+  .alert.alert-error
+    button type="button" class="close" data-dismiss="alert" &times;
+    <strong>Alert:</strong> #{flash[:alert]}
