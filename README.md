@@ -1,6 +1,7 @@
 # Installation
     $ git clone git://github.com/tbuehlmann/favstar-twitter-fetcher.git
     $ bundle install
+    $ bundle exec rake db:migrate
 # Starting
     $ bundle exec rails s
 # Usage
