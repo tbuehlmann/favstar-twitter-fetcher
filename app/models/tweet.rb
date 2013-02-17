@@ -7,6 +7,9 @@ class Tweet < ActiveRecord::Base
     :only_integer => true,
     :greater_than => 0
   }
+  validates :author, :presence => true
+  validates :text, :presence => true
+  validates :tweeted_at, :presence => true
 
   def populate
     self.tweet_id = self.tweet_id.to_i
@@ -23,7 +26,7 @@ class Tweet < ActiveRecord::Base
           self.text = status['text']
           self.tweeted_at = status['created_at']
         else
-          errors.add :base, 'Something something occured!'
+          errors[:base] << 'Something something occured!'
         end
       end
     end
