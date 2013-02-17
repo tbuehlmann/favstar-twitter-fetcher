@@ -3,18 +3,14 @@ class Tweet < ActiveRecord::Base
 
   validates :tweet_id, :presence => true
   validates :tweet_id, :uniqueness => true
-  validates :tweet_id, :numericality => {
-    :only_integer => true,
-    :greater_than => 0
-  }
   validates :author, :presence => true
   validates :text, :presence => true
   validates :tweeted_at, :presence => true
 
-  def populate
-    self.tweet_id = self.tweet_id.to_i
+  before_validation :ensure_proper_tweet_id_format
 
-    if tweet_id > 0
+  def populate
+    if tweet_id.to_i > 0
       unless self.class.exists?(:tweet_id => tweet_id)
         response = HTTParty.get(twitter_status_url(tweet_id))
 
@@ -30,11 +26,17 @@ class Tweet < ActiveRecord::Base
         end
       end
     end
+
+    self.tweet_id = self.tweet_id.to_s
   end
 
   private
 
   def twitter_status_url(tweet_id)
     "https://api.twitter.com/1/statuses/show/#{tweet_id}.json"
+  end
+
+  def ensure_proper_tweet_id_format
+    self.tweet_id = self.tweet_id.to_i.to_s
   end
 end
